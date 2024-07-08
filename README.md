@@ -17,7 +17,7 @@ Ensure you have Go installed on your machine. You can download it from [the offi
 
 1. Clone the repository to your local machine.
    ```bash
-   git clone https://your-repository-url.git
+   git clone https://github.com/Vandit1604/go-lb.git
    cd go-lb 
    ```
 
@@ -47,13 +47,25 @@ The load balancer listens on port 9000 by default. You can change the port by mo
 
 ## Testing the Load Balancer
 
-To test the load balancer, you can use the provided Makefile targets.
+1. Start the python testing-servers with following commands in indiviual terminals  
 
-1. **Start Multiple Test Servers**: Use the `make servers` command to start multiple test servers on different ports. This simulates a scenario where the load balancer receives requests from multiple clients.
+```
+python3 -m http.server 8080 --directory testing-servers/server8080
+python3 -m http.server 8081 --directory testing-servers/server8081
+python3 -m http.server 8082 --directory testing-servers/server8082
 
-2. **Build and Run the Load Balancer**: Execute `make run` to build and run the load balancer. It will start listening for incoming requests and distribute them among the test servers.
+```
 
-3. **Stop the Load Balancer and Test Servers**: Use `make stop` to gracefully shut down the load balancer and all test servers.
+2. Visit *http://localhost:9000* 
+
+3. Do hard refresh with <kbd>CTRL+SHIFT+R</kbd> and you'll be able to see the port changing in HTML.
+
+---
+NOTE: Use this command to kill all the python servers after you're done testing
+```
+pkill -f "python3 -m http.server"
+```
+---
 
 ## Configuration
 
